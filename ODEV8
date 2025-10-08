@@ -1,0 +1,56 @@
+CREATE TABLE employee (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50),
+    birthday DATE,
+    email VARCHAR(100)
+);
+INSERT INTO employee (name, birthday, email) VALUES
+('John Doe', '1988-05-21', 'john.doe@example.com'),
+('Jane Smith', '1992-09-14', 'jane.smith@example.com'),
+('Robert Brown', '1979-11-30', 'robert.brown@example.com'),
+('Emily Johnson', '1995-03-12', 'emily.johnson@example.com'),
+('Michael Davis', '1983-07-01', 'michael.davis@example.com');
+-- ... (toplam 50 kayıt)
+-- 1. id'ye göre güncelleme
+UPDATE employee
+SET email = 'updated1@example.com'
+WHERE id = 5;
+
+-- 2. name'e göre güncelleme
+UPDATE employee
+SET birthday = '1990-01-01'
+WHERE name = 'John Doe';
+
+-- 3. birthday'e göre güncelleme
+UPDATE employee
+SET name = 'Birthday Updated'
+WHERE birthday < '1980-01-01';
+
+-- 4. email'e göre güncelleme
+UPDATE employee
+SET name = 'Email Corrected'
+WHERE email LIKE '%example.com';
+
+-- 5. name'e göre birden fazla sütunu güncelleme
+UPDATE employee
+SET email = 'changed@example.com', birthday = '2001-12-12'
+WHERE name = 'Jane Smith';
+-- 1. id'ye göre silme
+DELETE FROM employee
+WHERE id = 10;
+
+-- 2. name'e göre silme
+DELETE FROM employee
+WHERE name = 'Michael Davis';
+
+-- 3. birthday'e göre silme
+DELETE FROM employee
+WHERE birthday < '1980-01-01';
+
+-- 4. email'e göre silme
+DELETE FROM employee
+WHERE email LIKE '%oldmail.com';
+
+-- 5. name'e göre silme (belirli bir desene göre)
+DELETE FROM employee
+WHERE name LIKE 'E%';
